@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13157328",
+      "name": "User Service",
+      "font_class": "UserService",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    }
+  ]
+}
