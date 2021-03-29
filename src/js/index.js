@@ -1,8 +1,11 @@
+import "@babel/polyfill";
 import header from "./header";
 import avatar from "../img/avatar.jpg";
 import "../css/reset.css";
 import "../css/index.scss";
 import "../css/iconfont.css";
+import counterInit from "./counter2";
+import es6_test_fn from "./es6-test";
 
 /* var img = new Image();
 img.src = avatar;
@@ -23,4 +26,20 @@ btn.onclick = function () {
     app.appendChild(txtElement);
 };
 
+var counter = document.getElementById("counter");
+counter.onclick = function () {
+    counter.innerText = parseInt(counter.innerText) + 1;
+};
+app.appendChild(counter);
+
 header();
+counterInit();
+es6_test_fn().then((res) => {
+    console.log(res);
+});
+
+if (module.hot) {
+    module.hot.accept("./counter2", () => {
+        counterInit();
+    });
+}

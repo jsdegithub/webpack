@@ -5,7 +5,12 @@ const { HotModuleReplacementPlugin } = require("webpack");
 
 module.exports = {
     mode: "development",
-    devtool: "cheap-module-eval-source-map", //生产环境下我们不生成sourcemap
+    // 开发环境下配置source-map的最佳实践
+    // 生产环境下我们不生成sourcemap
+    // devtool: "cheap-module-eval-source-map",
+    // devtool: "source-map",
+    // cheap的作用是只映射我们的src里面的源码
+    devtool: "cheap-source-map",
     entry: "./src/js/index.js",
     output: {
         filename: "bundle.js",
@@ -27,6 +32,29 @@ module.exports = {
     ],
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader",
+                options: {
+                    presets: [
+                        [
+                            "@babel/preset-env",
+                            {
+                                useBuiltIns: "usage",
+                                /* targets: {
+                                    edge: "17",
+                                    firefox: "60",
+                                    chrome: "67",
+                                    safari: "11.1",
+                                    ie: "11",
+                                }, */
+                                targets: "> 0.25%, not dead",
+                            },
+                        ],
+                    ],
+                },
+            },
             {
                 test: /\.(jpg|png|gif)$/,
                 use: {
