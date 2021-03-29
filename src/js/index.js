@@ -1,4 +1,6 @@
-import "@babel/polyfill";
+// import "@babel/polyfill";
+// when setting `useBuiltIns:'usage'`, polyfill are
+// automatically imported when needed
 import header from "./header";
 import avatar from "../img/avatar.jpg";
 import "../css/reset.css";

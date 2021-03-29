@@ -31,5 +31,11 @@
     },
     "dependencies": {
         "@babel/polyfill": "^7.0.0"
-    }
+    },
+    "sideEffects": [
+        "@babel/polyfill",
+        "*.css",
+        "*.scss",
+        "*.less"
+    ]
 }
