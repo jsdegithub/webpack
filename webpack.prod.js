@@ -1,10 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const { HotModuleReplacementPlugin } = require("webpack");
+// const { HotModuleReplacementPlugin } = require("webpack");
 
 module.exports = {
-    mode: "development",
+    mode: "production",
     // 开发环境下配置source-map的最佳实践
     // devtool: "cheap-module-eval-source-map",
     // cheap的作用是只映射我们的src里面的源码
@@ -13,25 +13,25 @@ module.exports = {
     // devtool: "cheap-module-source-map",
     // 最完整的source-map配置，但体积最大
     // devtool: "source-map",
-    devtool: "cheap-source-map",
+    // devtool: "cheap-source-map",
     entry: "./src/js/index.js",
     output: {
-        filename: "bundle.js",
+        filename: "[name].js",
         path: path.resolve(__dirname, "dist"),
     },
-    devServer: {
+    /* devServer: {
         contentBase: "./dist",
         open: true,
         port: 8080,
         hot: true,
         hotOnly: true, //热更新不生效也不让浏览器自动刷新
-    },
+    }, */
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/html/index.html",
         }),
         new CleanWebpackPlugin(["dist"]),
-        new HotModuleReplacementPlugin(),
+        // new HotModuleReplacementPlugin(),
     ],
     // 开发环境下加入此项配置启用treeshaking
     // 在package.json中还需要加入
@@ -40,8 +40,14 @@ module.exports = {
     // production模式下不用配置此项，webpack会自动配置好
     // 但是package.json中仍然需要配置sideEffects
     // sideEffects:false代表对所有模块采用treeshaking
+    /* optimization: {
+        usedExports: true,
+    }, */
     optimization: {
         usedExports: true,
+        splitChunks: {
+            chunks: "all",
+        },
     },
     module: {
         rules: [
