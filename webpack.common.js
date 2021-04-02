@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
     entry: "./src/js/index.js",
@@ -12,6 +13,10 @@ module.exports = {
             template: "./src/html/index.html",
         }),
         new CleanWebpackPlugin(["dist"]),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            // _: "lodash",
+        }),
     ],
     // 开发环境下加入此项配置启用treeshaking
     // 在package.json中还需要加入
@@ -51,7 +56,14 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel-loader",
+                use: [
+                    {
+                        loader: "babel-loader",
+                    },
+                    {
+                        loader: "imports-loader?this=>window",
+                    },
+                ],
                 options: {
                     presets: [
                         [

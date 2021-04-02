@@ -9,6 +9,7 @@ import "../css/iconfont.css";
 import counterInit from "./counter2";
 import es6_test_fn from "./es6-test";
 // import _ from "lodash";
+import provide_plugin_test from "./ProvidePlugin-test";
 
 /* var img = new Image();
 img.src = avatar;
@@ -76,6 +77,8 @@ document.addEventListener("click", () => {
         func();
     });
 });
+
+provide_plugin_test();
 
 if (module.hot) {
     module.hot.accept("./counter2", () => {
