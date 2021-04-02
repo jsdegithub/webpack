@@ -22,6 +22,37 @@ const devConfig = {
         hotOnly: true, //热更新不生效也不让浏览器自动刷新
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 2,
+                        },
+                    },
+                    "postcss-loader",
+                ],
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 2,
+                        },
+                    },
+                    "postcss-loader",
+                    "sass-loader",
+                ],
+            },
+        ],
+    },
 };
 
 module.exports = merge(commonConfig, devConfig);

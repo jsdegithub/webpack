@@ -86,33 +86,6 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/,
-                use: [
-                    "style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            importLoaders: 2,
-                        },
-                    },
-                    "postcss-loader",
-                ],
-            },
-            {
-                test: /\.scss$/,
-                use: [
-                    "style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            importLoaders: 2,
-                        },
-                    },
-                    "postcss-loader",
-                    "sass-loader",
-                ],
-            },
-            {
                 test: /\.(eot|ttf|svg|woff|woff2)$/,
                 use: {
                     loader: "file-loader",
