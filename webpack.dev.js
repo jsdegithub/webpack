@@ -21,6 +21,10 @@ const devConfig = {
         hot: true,
         hotOnly: true, //热更新不生效也不让浏览器自动刷新
     },
+    output: {
+        filename: "[name].js",
+        chunkFilename: "[name].chunk.js",
+    },
     plugins: [new webpack.HotModuleReplacementPlugin()],
     module: {
         rules: [

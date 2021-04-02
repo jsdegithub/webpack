@@ -12,6 +12,10 @@ const prodConfig = {
             chunkFilename: "[name].chunk.css",
         }),
     ],
+    output: {
+        filename: "[name].[contenthash].js",
+        chunkFilename: "[name].chunk.[contenthash].js",
+    },
     optimization: {
         minimizer: [new OptimizeCSSAssetsPlugin({})],
     },
