@@ -67,6 +67,16 @@ function getJQuery() {
 }
 getJQuery();
 
+document.addEventListener("click", () => {
+    // 使用魔法注释 /* webpackPrefetch:true */ 实现预加载（主页资源加载完毕再加载）
+    // prefetch和preload的区别：prefetch是等待核心代码加载完毕再加载
+    // preload是和核心代码一起加载
+    // 所以推荐用prefetch
+    import(/* webpackPrefetch:true */ "./click.js").then(({ default: func }) => {
+        func();
+    });
+});
+
 if (module.hot) {
     module.hot.accept("./counter2", () => {
         counterInit();
